@@ -73,9 +73,9 @@ object POMMetadata {
           </license>
         </licenses>
         <scm>
-          <connection>scm:git@github.com:hmrc/play-json-encoder.git</connection>
-          <developerConnection>scm:git@github.com:hmrc/play-json-encoder.git</developerConnection>
-          <url>git@github.com:hmrc/play-json-encoder.git</url>
+          <connection>scm:git@github.com:hmrc/play-json-logger.git</connection>
+          <developerConnection>scm:git@github.com:hmrc/play-json-logger.git</developerConnection>
+          <url>git@github.com:hmrc/play-json-logger.git</url>
         </scm>
         <developers>
           <developer>
