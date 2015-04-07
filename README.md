@@ -1,6 +1,8 @@
 play-json-logger
 ================
 
+[ ![Download](https://api.bintray.com/packages/hmrc/releases/play-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/play-json-logger/_latestVersion)
+
 This is a Json encoder for Play applications logger. It uses MDC to output all its properties in the log message too.
 
 These are the properties (for your `application.conf`) that you can use to alter the log output:
@@ -36,7 +38,7 @@ Include the following dependency in your SBT build
 ```scala
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
-libraryDependencies += "uk.gov.hmrc" %% "play-json-logger" % "1.0.0"
+libraryDependencies += "uk.gov.hmrc" %% "play-json-logger" % "x.x.x"
 ```
 
 ## License ##
