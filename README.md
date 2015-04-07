@@ -1,7 +1,7 @@
 play-json-logger
 ================
 
-[ ![Download](https://api.bintray.com/packages/hmrc/releases/play-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/play-json-logger/_latestVersion)
+[![Build Status](https://travis-ci.org/hmrc/play-json-logger.svg)](https://travis-ci.org/hmrc/play-json-logger) [ ![Download](https://api.bintray.com/packages/hmrc/releases/play-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/play-json-logger/_latestVersion)
 
 This is a Json encoder for Play applications logger. It uses MDC to output all its properties in the log message too.
 
