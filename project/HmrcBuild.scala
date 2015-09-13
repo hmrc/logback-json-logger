@@ -30,9 +30,9 @@ object HmrcBuild extends Build {
   lazy val microservice = Project(appName, file("."))
     .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
     .settings(
-      targetJvm := "jvm-1.7",
+      scalaVersion := "2.11.7",
       libraryDependencies ++= AppDependencies(),
-      crossScalaVersions := Seq("2.11.6"),
+      crossScalaVersions := Seq("2.11.7"),
       resolvers := Seq(
         Resolver.bintrayRepo("hmrc", "releases"),
         "typesafe-releases" at "http://repo.typesafe.com/typesafe/releases/"

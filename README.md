@@ -38,8 +38,10 @@ Include the following dependency in your SBT build
 ```scala
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
-libraryDependencies += "uk.gov.hmrc" %% "play-json-logger" % "x.x.x"
+libraryDependencies += "uk.gov.hmrc" %% "play-json-logger" % "[INSERT_VERSION]"
 ```
+
+Use version >=1.0.0 for Java 7 & Play 2.3.x
 
 ## License ##
  
