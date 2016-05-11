@@ -16,16 +16,13 @@
 
 import sbt.Keys._
 import sbt._
-import uk.gov.hmrc.SbtAutoBuildPlugin
 import uk.gov.hmrc.versioning.SbtGitVersioning
 
 object HmrcBuild extends Build {
 
-  import uk.gov.hmrc.DefaultBuildSettings._
-  import uk.gov.hmrc.PublishingSettings._
-  import uk.gov.hmrc.{SbtBuildInfo, ShellPrompt, _}
+  import uk.gov.hmrc._
 
-  val appName = "play-json-logger"
+  val appName = "play-json-logger-25"
 
   lazy val microservice = Project(appName, file("."))
     .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
@@ -47,7 +44,9 @@ private object AppDependencies {
 
   val compile = Seq(
     "com.typesafe.play" %% "play" % PlayVersion.current,
-    "commons-io" % "commons-io" % "2.4"
+    "commons-io" % "commons-io" % "2.4",
+    "ch.qos.logback" % "logback-core" % "1.1.7",
+    "ch.qos.logback" % "logback-classic" % "1.1.7"
   )
 
   def apply() = compile
