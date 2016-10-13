@@ -22,7 +22,7 @@ object HmrcBuild extends Build {
 
   import uk.gov.hmrc._
 
-  val appName = "play-json-logger-25"
+  val appName = "logback-json-logger"
 
   lazy val microservice = Project(appName, file("."))
     .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
@@ -31,8 +31,7 @@ object HmrcBuild extends Build {
       libraryDependencies ++= AppDependencies(),
       crossScalaVersions := Seq("2.11.7"),
       resolvers := Seq(
-        Resolver.bintrayRepo("hmrc", "releases"),
-        "typesafe-releases" at "http://repo.typesafe.com/typesafe/releases/"
+        Resolver.bintrayRepo("hmrc", "releases")
       )
     )
     .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
@@ -40,10 +39,10 @@ object HmrcBuild extends Build {
 
 private object AppDependencies {
 
-  import play.core.PlayVersion
-
   val compile = Seq(
-    "com.typesafe.play" %% "play" % PlayVersion.current,
+    "org.apache.commons" % "commons-lang3" % "3.4",
+    "com.fasterxml.jackson.core" % "jackson-core" % "2.7.1",
+    "com.fasterxml.jackson.core" % "jackson-databind" % "2.7.1",
     "commons-io" % "commons-io" % "2.4",
     "ch.qos.logback" % "logback-core" % "1.1.7",
     "ch.qos.logback" % "logback-classic" % "1.1.7"

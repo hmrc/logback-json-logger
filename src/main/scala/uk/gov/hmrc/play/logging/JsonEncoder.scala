@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 HM Revenue & Customs
+ * Copyright 2016 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,15 @@
 
 package uk.gov.hmrc.play.logging
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.core.JsonGenerator.Feature
-import ch.qos.logback.core.encoder.EncoderBase
-import ch.qos.logback.classic.spi.{ ThrowableProxyUtil, ILoggingEvent }
 import java.net.InetAddress
-import org.apache.commons.lang3.time.FastDateFormat
+
+import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxyUtil}
+import ch.qos.logback.core.encoder.EncoderBase
+import com.fasterxml.jackson.core.JsonGenerator.Feature
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.io.IOUtils._
-import play.api.Play
+import org.apache.commons.lang3.time.FastDateFormat
+import org.slf4j.MDC
 
 class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
@@ -31,11 +32,15 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
   private val mapper = new ObjectMapper().configure(Feature.ESCAPE_NON_ASCII, true)
 
-  lazy val appName = Play.current.configuration.getString("appName").getOrElse("APP NAME NOT SET")
+  lazy val appName: String = {
+    val name: String = MDC.get("appName")
+    if (name != null) appName else "APP NAME NOT SET"
+  }
 
-  private lazy val dateFormat = FastDateFormat.getInstance(
-    Play.current.configuration.getString("logger.json.dateformat").getOrElse("yyyy-MM-dd HH:mm:ss.SSSZZ")
-  )
+  private lazy val dateFormat: FastDateFormat = {
+    val format: String = MDC.get("logger.json.dateformat")
+    FastDateFormat.getInstance(if (format != null) format else "yyyy-MM-dd HH:mm:ss.SSSZZ")
+  }
 
   override def doEncode(event: ILoggingEvent) {
     val eventNode = mapper.createObjectNode
