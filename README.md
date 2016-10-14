@@ -1,9 +1,9 @@
-play-json-logger
+logback-json-logger
 ================
 
-[![Build Status](https://travis-ci.org/hmrc/play-json-logger.svg)](https://travis-ci.org/hmrc/play-json-logger) [ ![Download](https://api.bintray.com/packages/hmrc/releases/play-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/play-json-logger/_latestVersion)
+[![Build Status](https://travis-ci.org/hmrc/logback-json-logger.svg)](https://travis-ci.org/hmrc/logback-json-logger) [ ![Download](https://api.bintray.com/packages/hmrc/releases/logback-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/logback-json-logger/_latestVersion)
 
-This is a Json encoder for Play applications logger. It uses MDC to output all its properties in the log message too.
+This is a Json encoder for logback applications logger. It uses MDC to output all its properties in the log message too.
 
 These are the properties (for your `application.conf`) that you can use to alter the log output:
 
@@ -38,10 +38,10 @@ Include the following dependency in your SBT build
 ```scala
 resolvers += Resolver.bintrayRepo("hmrc", "releases")
 
-libraryDependencies += "uk.gov.hmrc" %% "play-json-logger" % "[INSERT_VERSION]"
+libraryDependencies += "uk.gov.hmrc" %% "logback-json-logger" % "[INSERT_VERSION]"
 ```
 
-Use version >=1.0.0 for Java 7 & Play 2.3.x
+Use version >=2.0.0 for Java 8
 
 ## License ##
  
