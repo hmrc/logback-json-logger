@@ -45,7 +45,9 @@ private object AppDependencies {
     "com.fasterxml.jackson.core" % "jackson-databind" % "2.7.1",
     "commons-io" % "commons-io" % "2.4",
     "ch.qos.logback" % "logback-core" % "1.1.7",
-    "ch.qos.logback" % "logback-classic" % "1.1.7"
+    "ch.qos.logback" % "logback-classic" % "1.1.7",
+    "com.typesafe" % "config" % "1.3.1"
+
   )
 
   def apply() = compile

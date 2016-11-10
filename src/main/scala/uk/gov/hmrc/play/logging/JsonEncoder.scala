@@ -24,7 +24,8 @@ import com.fasterxml.jackson.core.JsonGenerator.Feature
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.io.IOUtils._
 import org.apache.commons.lang3.time.FastDateFormat
-import org.slf4j.MDC
+import com.typesafe.config.ConfigFactory
+import scala.util.{Success, Try}
 
 class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
@@ -32,14 +33,19 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
   private val mapper = new ObjectMapper().configure(Feature.ESCAPE_NON_ASCII, true)
 
-  lazy val appName: String = {
-    val name: String = MDC.get("appName")
-    if (name != null) appName else "APP NAME NOT SET"
+  lazy val appName:String = Try{ConfigFactory.load().getString("appName")} match {
+    case Success(name) => name.toString
+    case _ => "APP NAME NOT SET"
   }
 
-  private lazy val dateFormat: FastDateFormat = {
-    val format: String = MDC.get("logger.json.dateformat")
-    FastDateFormat.getInstance(if (format != null) format else "yyyy-MM-dd HH:mm:ss.SSSZZ")
+  private val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSZZ"
+
+  private lazy val dateFormat = {
+    val dformat = Try{ConfigFactory.load().getString("logger.json.dateformat")} match {
+      case Success(date) => date.toString
+      case _ => DATE_FORMAT
+    }
+    FastDateFormat.getInstance( dformat )
   }
 
   override def doEncode(event: ILoggingEvent) {
