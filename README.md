@@ -3,7 +3,7 @@ logback-json-logger
 
 [![Build Status](https://travis-ci.org/hmrc/logback-json-logger.svg)](https://travis-ci.org/hmrc/logback-json-logger) [ ![Download](https://api.bintray.com/packages/hmrc/releases/logback-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/logback-json-logger/_latestVersion)
 
-This is a Json encoder for logback applications logger. It uses MDC to output all its properties in the log message too.
+This is a JSON encoder for [Logback](http://logback.qos.ch/documentation.html) applications logger. It uses Mapped Diagnostic Contexts ([MDC](http://logback.qos.ch/manual/mdc.html)) to include appropriate context information in each log message too.
 
 These are the properties (for your `application.conf`) that you can use to alter the log output:
 
@@ -11,6 +11,8 @@ These are the properties (for your `application.conf`) that you can use to alter
 appName = MyApplication
 logger.json.dateformat = yyyy-MM-dd HH:mm:ss.SSSZZ
 ```
+
+If you do not set the date format, it defaults to `yyyy-MM-dd HH:mm:ss.SSSZZ`.
 
 You can then use the encoder in your logger configuration.
 
