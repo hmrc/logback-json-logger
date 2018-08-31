@@ -77,4 +77,8 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
   override def footerBytes(): Array[Byte] = {
     LINE_SEPARATOR.getBytes(StandardCharsets.UTF_8)
   }
+
+  override def headerBytes(): Array[Byte] = {
+    LINE_SEPARATOR.getBytes(StandardCharsets.UTF_8)
+  }
 }
