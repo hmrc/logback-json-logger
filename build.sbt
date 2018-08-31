@@ -25,13 +25,17 @@ lazy val microservice = Project(appName, file("."))
   .settings(
     scalaVersion := "2.11.12",
     libraryDependencies ++= Seq(
-      "org.apache.commons" % "commons-lang3" % "3.4",
-      "com.fasterxml.jackson.core" % "jackson-core" % "2.7.1",
+      "org.apache.commons"         % "commons-lang3"    % "3.4",
+      "com.fasterxml.jackson.core" % "jackson-core"     % "2.7.1",
       "com.fasterxml.jackson.core" % "jackson-databind" % "2.7.1",
-      "commons-io" % "commons-io" % "2.4",
-      "ch.qos.logback" % "logback-core" % "1.2.3",
-      "ch.qos.logback" % "logback-classic" % "1.2.3",
-      "com.typesafe" % "config" % "1.3.1"
+      "commons-io"                 % "commons-io"       % "2.4",
+      "ch.qos.logback"             % "logback-core"     % "1.2.3",
+      "ch.qos.logback"             % "logback-classic"  % "1.2.3",
+      "com.typesafe"               % "config"           % "1.3.1",
+      "org.scalatest"              %% "scalatest"       % "3.0.5"  % Test,
+      "org.pegdown"                % "pegdown"          % "1.6.0"  % Test,
+      "org.mockito"                % "mockito-core"     % "2.21.0" % Test,
+      "com.typesafe.play"          %% "play-json"       % "2.6.10" % Test
     ),
     crossScalaVersions := Seq("2.11.12"),
     resolvers := Seq(
