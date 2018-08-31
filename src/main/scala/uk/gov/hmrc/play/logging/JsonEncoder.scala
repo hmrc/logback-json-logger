@@ -17,6 +17,7 @@
 package uk.gov.hmrc.play.logging
 
 import java.net.InetAddress
+import java.nio.charset.StandardCharsets
 
 import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxyUtil}
 import ch.qos.logback.core.encoder.EncoderBase
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.io.IOUtils._
 import org.apache.commons.lang3.time.FastDateFormat
 import com.typesafe.config.ConfigFactory
+
 import scala.util.{Success, Try}
 import scala.collection.JavaConverters._
 
@@ -48,7 +50,7 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
     FastDateFormat.getInstance( dformat )
   }
 
-  override def doEncode(event: ILoggingEvent) {
+  override def encode(event: ILoggingEvent): Array[Byte] = {
     val eventNode = mapper.createObjectNode
 
     eventNode.put("app", appName)
@@ -69,13 +71,10 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
     )
     event.getMDCPropertyMap.asScala foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
 
-    write(mapper.writeValueAsBytes(eventNode), outputStream)
-    write(LINE_SEPARATOR, outputStream)
-
-    outputStream.flush()
+    s"${mapper.writeValueAsString(eventNode)}$LINE_SEPARATOR".getBytes(StandardCharsets.UTF_8)
   }
 
-  override def close() {
-    write(LINE_SEPARATOR, outputStream)
+  override def footerBytes(): Array[Byte] = {
+    LINE_SEPARATOR.getBytes(StandardCharsets.UTF_8)
   }
 }
