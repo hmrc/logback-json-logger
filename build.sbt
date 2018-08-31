@@ -18,12 +18,16 @@ import sbt.Keys._
 import sbt._
 import uk.gov.hmrc.versioning.SbtGitVersioning
 
-val appName = "logback-json-logger"
+val libName = "logback-json-logger"
 
-lazy val microservice = Project(appName, file("."))
+lazy val root = Project(libName, file("."))
   .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
   .settings(
-    scalaVersion := "2.11.12",
+    majorVersion                     := 4,
+    makePublicallyAvailableOnBintray := true
+  )
+  .settings(
+    scalaVersion        := "2.11.12",
     libraryDependencies ++= Seq(
       "org.apache.commons"         % "commons-lang3"    % "3.4",
       "com.fasterxml.jackson.core" % "jackson-core"     % "2.7.1",
@@ -37,9 +41,7 @@ lazy val microservice = Project(appName, file("."))
       "org.mockito"                % "mockito-core"     % "2.21.0" % Test,
       "com.typesafe.play"          %% "play-json"       % "2.6.10" % Test
     ),
-    crossScalaVersions := Seq("2.11.12"),
     resolvers := Seq(
       Resolver.bintrayRepo("hmrc", "releases")
     )
   )
-  .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
