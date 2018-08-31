@@ -26,10 +26,10 @@ import org.apache.commons.io.IOUtils._
 import org.apache.commons.lang3.time.FastDateFormat
 import com.typesafe.config.ConfigFactory
 import scala.util.{Success, Try}
+import scala.collection.JavaConverters._
 
 class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
-  import scala.collection.JavaConversions._
 
   private val mapper = new ObjectMapper().configure(Feature.ESCAPE_NON_ASCII, true)
 
@@ -65,9 +65,9 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
     eventNode.put("level", event.getLevel.toString)
 
     Option(getContext).foreach(c =>
-      c.getCopyOfPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
+      c.getCopyOfPropertyMap.asScala foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
     )
-    event.getMDCPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
+    event.getMDCPropertyMap.asScala foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
 
     write(mapper.writeValueAsBytes(eventNode), outputStream)
     write(LINE_SEPARATOR, outputStream)
