@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 HM Revenue & Customs
+ * Copyright 2018 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package uk.gov.hmrc.play.logging
 
 import java.net.InetAddress
+import java.nio.charset.StandardCharsets
 
 import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxyUtil}
 import ch.qos.logback.core.encoder.EncoderBase
@@ -25,30 +26,30 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.commons.io.IOUtils._
 import org.apache.commons.lang3.time.FastDateFormat
 import com.typesafe.config.ConfigFactory
+
 import scala.util.{Success, Try}
+import scala.collection.JavaConverters._
 
 class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
-  import scala.collection.JavaConversions._
-
   private val mapper = new ObjectMapper().configure(Feature.ESCAPE_NON_ASCII, true)
 
-  lazy val appName:String = Try{ConfigFactory.load().getString("appName")} match {
+  lazy val appName: String = Try { ConfigFactory.load().getString("appName") } match {
     case Success(name) => name.toString
-    case _ => "APP NAME NOT SET"
+    case _             => "APP NAME NOT SET"
   }
 
   private val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSZZ"
 
   private lazy val dateFormat = {
-    val dformat = Try{ConfigFactory.load().getString("logger.json.dateformat")} match {
+    val dformat = Try { ConfigFactory.load().getString("logger.json.dateformat") } match {
       case Success(date) => date.toString
-      case _ => DATE_FORMAT
+      case _             => DATE_FORMAT
     }
-    FastDateFormat.getInstance( dformat )
+    FastDateFormat.getInstance(dformat)
   }
 
-  override def doEncode(event: ILoggingEvent) {
+  override def encode(event: ILoggingEvent): Array[Byte] = {
     val eventNode = mapper.createObjectNode
 
     eventNode.put("app", appName)
@@ -56,26 +57,23 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
     eventNode.put("timestamp", dateFormat.format(event.getTimeStamp))
     eventNode.put("message", event.getFormattedMessage)
 
-    Option(event.getThrowableProxy).map(p =>
-      eventNode.put("exception", ThrowableProxyUtil.asString(p))
-    )
+    Option(event.getThrowableProxy).map(p => eventNode.put("exception", ThrowableProxyUtil.asString(p)))
 
     eventNode.put("logger", event.getLoggerName)
     eventNode.put("thread", event.getThreadName)
     eventNode.put("level", event.getLevel.toString)
 
-    Option(getContext).map(c =>
-      c.getCopyOfPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
-    )
-    event.getMDCPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
+    Option(getContext).foreach(c =>
+      c.getCopyOfPropertyMap.asScala foreach { case (k, v) => eventNode.put(k.toLowerCase, v) })
+    event.getMDCPropertyMap.asScala foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
 
-    write(mapper.writeValueAsBytes(eventNode), outputStream)
-    write(LINE_SEPARATOR, outputStream)
-
-    outputStream.flush()
+    s"${mapper.writeValueAsString(eventNode)}$LINE_SEPARATOR".getBytes(StandardCharsets.UTF_8)
   }
 
-  override def close() {
-    write(LINE_SEPARATOR, outputStream)
-  }
+  override def footerBytes(): Array[Byte] =
+    LINE_SEPARATOR.getBytes(StandardCharsets.UTF_8)
+
+  override def headerBytes(): Array[Byte] =
+    LINE_SEPARATOR.getBytes(StandardCharsets.UTF_8)
+
 }
