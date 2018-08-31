@@ -43,7 +43,9 @@ resolvers += Resolver.bintrayRepo("hmrc", "releases")
 libraryDependencies += "uk.gov.hmrc" %% "logback-json-logger" % "[INSERT_VERSION]"
 ```
 
-Use version >=2.0.0 for Java 8
+Use version >= 2.0.0 for Java 8
+
+Use version >= 4.0.0 for Play 2.5.14 or later
 
 ## License ##
  
