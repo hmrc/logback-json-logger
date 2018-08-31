@@ -64,7 +64,7 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
     eventNode.put("thread", event.getThreadName)
     eventNode.put("level", event.getLevel.toString)
 
-    Option(getContext).map(c =>
+    Option(getContext).foreach(c =>
       c.getCopyOfPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
     )
     event.getMDCPropertyMap.toMap foreach { case (k, v) => eventNode.put(k.toLowerCase, v) }
