@@ -1,7 +1,7 @@
 logback-json-logger
 ================
 
-[![Build Status](https://travis-ci.org/hmrc/logback-json-logger.svg)](https://travis-ci.org/hmrc/logback-json-logger) [ ![Download](https://api.bintray.com/packages/hmrc/releases/logback-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/logback-json-logger/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/hmrc/releases/logback-json-logger/images/download.svg) ](https://bintray.com/hmrc/releases/logback-json-logger/_latestVersion)
 
 This is a JSON encoder for [Logback](http://logback.qos.ch/documentation.html) applications logger. It uses Mapped Diagnostic Contexts ([MDC](http://logback.qos.ch/manual/mdc.html)) to include appropriate context information in each log message too.
 
