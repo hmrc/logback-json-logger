@@ -28,6 +28,7 @@ lazy val root = Project(libName, file("."))
   )
   .settings(
     scalaVersion        := "2.11.12",
+    crossScalaVersions := Seq("2.11.12", "2.12.8"),
     libraryDependencies ++= Seq(
       "org.apache.commons"         % "commons-lang3"    % "3.4",
       "com.fasterxml.jackson.core" % "jackson-core"     % "2.7.1",
