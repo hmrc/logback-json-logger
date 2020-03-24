@@ -45,7 +45,7 @@ lazy val root = Project(libName, file("."))
       "org.scalatest"                  %% "scalatest"              % "3.1.1"    % Test,
       "org.scalatestplus"              %% "scalatestplus-mockito"  % "1.0.0-M2" % Test,
       "org.mockito"                    % "mockito-core"            % "3.3.3"    % Test,
-      "com.typesafe.play"              %% "play-json"              % "2.6.14"   % Test
+      "com.typesafe.play"              %% "play-json"              % "2.7.4"   % Test
     ),
     resolvers := Seq(
       Resolver.bintrayRepo("hmrc", "releases")
