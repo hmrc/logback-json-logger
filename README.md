@@ -9,7 +9,7 @@ These are the properties (for your `application.conf`) that you can use to alter
 
 ```
 appName = MyApplication
-logger.json.dateformat = yyyy-MM-dd HH:mm:ss.SSSZZ
+logger.json.dateformat = "yyyy-MM-dd HH:mm:ss.SSSZZ"
 ```
 
 If you do not set the date format, it defaults to `yyyy-MM-dd HH:mm:ss.SSSZZ`.
