@@ -1,11 +1,8 @@
 sudo: false
 language: scala
-scala:
-- 2.11.7
+script: sbt +test
 jdk:
-- oraclejdk8
+  - openjdk8
 cache:
   directories:
     - '$HOME/.ivy2/cache'
-notifications:
-  email: false

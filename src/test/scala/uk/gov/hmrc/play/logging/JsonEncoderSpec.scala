@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,14 @@ import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxy}
 import ch.qos.logback.core.ContextBase
 import org.apache.commons.lang3.time.FastDateFormat
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatestplus.mockito.MockitoSugar
 import play.api.libs.json.{JsLookupResult, Json}
 
 import scala.collection.JavaConverters._
 
-class JsonEncoderSpec extends WordSpec with Matchers with MockitoSugar {
+class JsonEncoderSpec extends AnyWordSpec with Matchers with MockitoSugar {
 
   "Json-encoded message" should {
     "contain all required fields" in {
