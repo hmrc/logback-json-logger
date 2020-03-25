@@ -31,7 +31,6 @@ lazy val root = Project(libName, file("."))
     crossScalaVersions := Seq("2.11.12", "2.12.10"),
     libraryDependencies ++= Seq(
       "org.apache.commons" % "commons-lang3" % "3.9",
-      // force dependencies due to security flaws found in jackson-databind < 2.9.x using XRay
       "com.fasterxml.jackson.core"     % "jackson-core"            % "2.10.3",
       "com.fasterxml.jackson.core"     % "jackson-databind"        % "2.10.3",
       "com.fasterxml.jackson.core"     % "jackson-annotations"     % "2.10.3",
