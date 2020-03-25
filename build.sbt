@@ -31,12 +31,9 @@ lazy val root = Project(libName, file("."))
     crossScalaVersions := Seq("2.11.12", "2.12.10"),
     libraryDependencies ++= Seq(
       "org.apache.commons" % "commons-lang3" % "3.9",
+      "commons-io"                     % "commons-io"              % "2.6",
       "com.fasterxml.jackson.core"     % "jackson-core"            % "2.10.3",
       "com.fasterxml.jackson.core"     % "jackson-databind"        % "2.10.3",
-      "com.fasterxml.jackson.core"     % "jackson-annotations"     % "2.10.3",
-      "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8"   % "2.10.3",
-      "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.10.3",
-      "commons-io"                     % "commons-io"              % "2.6",
       "ch.qos.logback"                 % "logback-core"            % "1.2.3",
       "ch.qos.logback"                 % "logback-classic"         % "1.2.3",
       "com.typesafe"                   % "config"                  % "1.4.0",
