@@ -23,27 +23,27 @@ val libName = "logback-json-logger"
 lazy val root = Project(libName, file("."))
   .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
   .settings(
-    majorVersion := 4,
+    majorVersion := 5,
     makePublicallyAvailableOnBintray := true
   )
   .settings(
-    scalaVersion := "2.12.10",
-    crossScalaVersions := Seq("2.11.12", "2.12.10"),
+    scalaVersion := "2.12.12",
     libraryDependencies ++= Seq(
-      "org.apache.commons" % "commons-lang3" % "3.9",
-      "commons-io"                     % "commons-io"              % "2.6",
-      "com.fasterxml.jackson.core"     % "jackson-core"            % "2.10.3",
-      "com.fasterxml.jackson.core"     % "jackson-databind"        % "2.10.3",
-      "ch.qos.logback"                 % "logback-core"            % "1.2.3",
-      "ch.qos.logback"                 % "logback-classic"         % "1.2.3",
-      "com.typesafe"                   % "config"                  % "1.4.0",
-      "com.vladsch.flexmark"           % "flexmark-all"            % "0.35.10"  % Test,
-      "org.scalatest"                  %% "scalatest"              % "3.1.1"    % Test,
-      "org.scalatestplus"              %% "scalatestplus-mockito"  % "1.0.0-M2" % Test,
-      "org.mockito"                    % "mockito-core"            % "3.3.3"    % Test,
-      "com.typesafe.play"              %% "play-json"              % "2.7.4"   % Test
+      "org.apache.commons"             %  "commons-lang3"           % "3.9",
+      "commons-io"                     %  "commons-io"              % "2.6",
+      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.10.3",
+      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.10.3",
+      "ch.qos.logback"                 %  "logback-core"            % "1.2.3",
+      "ch.qos.logback"                 %  "logback-classic"         % "1.2.3",
+      "com.typesafe"                   %  "config"                  % "1.4.0",
+      "com.vladsch.flexmark"           %  "flexmark-all"            % "0.35.10"   % Test,
+      "org.scalatest"                  %% "scalatest"               % "3.1.1"     % Test,
+      "org.scalatestplus"              %% "scalatestplus-mockito"   % "1.0.0-M2"  % Test,
+      "org.mockito"                    %  "mockito-core"            % "3.3.3"     % Test,
+      "com.typesafe.play"              %% "play-json"               % "2.8.1"     % Test
     ),
     resolvers := Seq(
-      Resolver.bintrayRepo("hmrc", "releases")
+      Resolver.bintrayRepo("hmrc", "releases"),
+      Resolver.typesafeRepo("releases")
     )
   )

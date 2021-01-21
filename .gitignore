@@ -35,3 +35,8 @@ target
 nohup.out
 rebel.xml
 .history
+
+.bloop/
+.metals/
+.vscode/
+metals.sbt
