@@ -29,18 +29,18 @@ lazy val root = Project(libName, file("."))
   .settings(
     scalaVersion := "2.12.12",
     libraryDependencies ++= Seq(
-      "org.apache.commons"             %  "commons-lang3"           % "3.9",
-      "commons-io"                     %  "commons-io"              % "2.6",
-      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.10.3",
-      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.10.3",
+      "org.apache.commons"             %  "commons-lang3"           % "3.11",
+      "commons-io"                     %  "commons-io"              % "2.8.0",
+      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.12.1",
+      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.12.1",
       "ch.qos.logback"                 %  "logback-core"            % "1.2.3",
       "ch.qos.logback"                 %  "logback-classic"         % "1.2.3",
-      "com.typesafe"                   %  "config"                  % "1.4.0",
+      "com.typesafe"                   %  "config"                  % "1.4.1",
       "com.vladsch.flexmark"           %  "flexmark-all"            % "0.35.10"   % Test,
-      "org.scalatest"                  %% "scalatest"               % "3.1.1"     % Test,
+      "org.scalatest"                  %% "scalatest"               % "3.2.3"     % Test,
       "org.scalatestplus"              %% "scalatestplus-mockito"   % "1.0.0-M2"  % Test,
-      "org.mockito"                    %  "mockito-core"            % "3.3.3"     % Test,
-      "com.typesafe.play"              %% "play-json"               % "2.8.1"     % Test
+      "org.mockito"                    %  "mockito-core"            % "3.7.7"     % Test,
+      "com.typesafe.play"              %% "play-json"               % "2.9.2"     % Test
     ),
     resolvers := Seq(
       Resolver.bintrayRepo("hmrc", "releases"),
