@@ -31,8 +31,8 @@ lazy val root = Project(libName, file("."))
     libraryDependencies ++= Seq(
       "org.apache.commons"             %  "commons-lang3"           % "3.11",
       "commons-io"                     %  "commons-io"              % "2.8.0",
-      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.12.1",
-      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.12.1",
+      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.10.3",
+      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.10.3",
       "ch.qos.logback"                 %  "logback-core"            % "1.2.3",
       "ch.qos.logback"                 %  "logback-classic"         % "1.2.3",
       "com.typesafe"                   %  "config"                  % "1.4.1",
