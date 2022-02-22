@@ -16,18 +16,13 @@
 
 import sbt.Keys._
 import sbt._
-import uk.gov.hmrc.versioning.SbtGitVersioning
 
-val libName = "logback-json-logger"
-
-lazy val root = Project(libName, file("."))
-  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
+lazy val root = Project("logback-json-logger", file("."))
   .settings(
     majorVersion := 5,
-    makePublicallyAvailableOnBintray := true
-  )
-  .settings(
-    scalaVersion := "2.12.12",
+    isPublicArtefact := true,
+    scalaVersion := "2.12.15",
+    crossScalaVersions := Seq("2.12.15", "2.13.7"),
     libraryDependencies ++= Seq(
       "org.apache.commons"             %  "commons-lang3"           % "3.11",
       "commons-io"                     %  "commons-io"              % "2.8.0",
