@@ -16,30 +16,23 @@
 
 import sbt.Keys._
 import sbt._
-import uk.gov.hmrc.versioning.SbtGitVersioning
 
-val libName = "logback-json-logger"
-
-lazy val root = Project(libName, file("."))
-  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
+lazy val root = Project("logback-json-logger", file("."))
   .settings(
-    majorVersion := 5,
-    makePublicallyAvailableOnBintray := true
-  )
-  .settings(
-    scalaVersion := "2.12.12",
+    majorVersion        := 5,
+    isPublicArtefact    := true,
+    scalaVersion        := "2.12.15",
+    crossScalaVersions  := Seq("2.12.15", "2.13.7"),
     libraryDependencies ++= Seq(
-      "org.apache.commons"             %  "commons-lang3"           % "3.11",
-      "commons-io"                     %  "commons-io"              % "2.8.0",
-      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.10.3",
-      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.10.3",
-      "ch.qos.logback"                 %  "logback-core"            % "1.2.3",
-      "ch.qos.logback"                 %  "logback-classic"         % "1.2.3",
+      "org.apache.commons"             %  "commons-lang3"           % "3.12.0",
+      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.11.4",
+      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.11.4",
+      "ch.qos.logback"                 %  "logback-core"            % "1.2.10",
+      "ch.qos.logback"                 %  "logback-classic"         % "1.2.10",
       "com.typesafe"                   %  "config"                  % "1.4.1",
       "com.vladsch.flexmark"           %  "flexmark-all"            % "0.35.10"   % Test,
       "org.scalatest"                  %% "scalatest"               % "3.2.3"     % Test,
-      "org.scalatestplus"              %% "scalatestplus-mockito"   % "1.0.0-M2"  % Test,
-      "org.mockito"                    %  "mockito-core"            % "3.7.7"     % Test,
+      "org.mockito"                    %% "mockito-scala-scalatest" % "1.16.46"   % Test,
       "com.typesafe.play"              %% "play-json"               % "2.9.2"     % Test
     )
   )
