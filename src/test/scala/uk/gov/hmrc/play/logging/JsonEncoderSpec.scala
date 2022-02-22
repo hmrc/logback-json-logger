@@ -26,7 +26,7 @@ import org.mockito.Mockito.when
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
-import play.api.libs.json.{JsLookupResult, Json}
+import play.api.libs.json.Json
 
 import scala.collection.JavaConverters._
 
@@ -59,24 +59,18 @@ class JsonEncoderSpec extends AnyWordSpec with Matchers with MockitoSugar {
       val result       = new String(jsonEncoder.encode(event), "UTF-8")
       val resultAsJson = Json.parse(result)
 
-      (resultAsJson \ "app").asString           shouldBe "my-app-name"
-      (resultAsJson \ "hostname").asString      shouldBe InetAddress.getLocalHost.getHostName
-      (resultAsJson \ "timestamp").asString     shouldBe FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss.SSSZZ").format(1)
-      (resultAsJson \ "message").asString       shouldBe "my-message"
-      (resultAsJson \ "exception").asString     should include("test-exception")
-      (resultAsJson \ "exception").asString     should include("java.lang.Exception")
-      (resultAsJson \ "exception").asString     should include(stringWriter.toString)
-      (resultAsJson \ "logger").asString        shouldBe "logger-name"
-      (resultAsJson \ "thread").asString        shouldBe "my-thread"
-      (resultAsJson \ "level").asString         shouldBe "INFO"
-      (resultAsJson \ "mykey").asString         shouldBe "myValue"
-      (resultAsJson \ "mymdcproperty").asString shouldBe "myMdcValue"
-
+      (resultAsJson \ "app"          ).as[String] shouldBe "my-app-name"
+      (resultAsJson \ "hostname"     ).as[String] shouldBe InetAddress.getLocalHost.getHostName
+      (resultAsJson \ "timestamp"    ).as[String] shouldBe FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss.SSSZZ").format(1)
+      (resultAsJson \ "message"      ).as[String] shouldBe "my-message"
+      (resultAsJson \ "exception"    ).as[String] should include("test-exception")
+      (resultAsJson \ "exception"    ).as[String] should include("java.lang.Exception")
+      (resultAsJson \ "exception"    ).as[String] should include(stringWriter.toString)
+      (resultAsJson \ "logger"       ).as[String] shouldBe "logger-name"
+      (resultAsJson \ "thread"       ).as[String] shouldBe "my-thread"
+      (resultAsJson \ "level"        ).as[String] shouldBe "INFO"
+      (resultAsJson \ "mykey"        ).as[String] shouldBe "myValue"
+      (resultAsJson \ "mymdcproperty").as[String] shouldBe "myMdcValue"
     }
   }
-
-  implicit class JsLookupResultOps(jsLookupResult: JsLookupResult) {
-    def asString: String = jsLookupResult.get.as[String]
-  }
-
 }
