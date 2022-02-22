@@ -15,6 +15,7 @@
  */
 
 package uk.gov.hmrc.play.logging
+
 import java.io.{PrintWriter, StringWriter}
 import java.net.InetAddress
 
@@ -22,10 +23,9 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxy}
 import ch.qos.logback.core.ContextBase
 import org.apache.commons.lang3.time.FastDateFormat
-import org.mockito.Mockito.when
+import org.mockito.MockitoSugar
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import org.scalatestplus.mockito.MockitoSugar
 import play.api.libs.json.Json
 
 import scala.collection.JavaConverters._
