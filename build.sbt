@@ -21,18 +21,19 @@ lazy val root = Project("logback-json-logger", file("."))
   .settings(
     majorVersion        := 5,
     isPublicArtefact    := true,
-    scalaVersion        := "2.12.15",
-    crossScalaVersions  := Seq("2.12.15", "2.13.7"),
+    scalaVersion        := "2.13.12",
+    crossScalaVersions  := Seq("2.12.18", "2.13.12"),
     libraryDependencies ++= Seq(
-      "org.apache.commons"             %  "commons-lang3"           % "3.12.0",
+      "org.apache.commons"             %  "commons-lang3"           % "3.14.0",
+      // jackson and logback will be evicted depending on the version of Play
       "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.11.4",
       "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.11.4",
-      "ch.qos.logback"                 %  "logback-core"            % "1.2.10",
-      "ch.qos.logback"                 %  "logback-classic"         % "1.2.10",
-      "com.typesafe"                   %  "config"                  % "1.4.1",
-      "com.vladsch.flexmark"           %  "flexmark-all"            % "0.35.10"   % Test,
-      "org.scalatest"                  %% "scalatest"               % "3.2.3"     % Test,
-      "org.mockito"                    %% "mockito-scala-scalatest" % "1.16.46"   % Test,
-      "com.typesafe.play"              %% "play-json"               % "2.9.2"     % Test
+      "ch.qos.logback"                 %  "logback-core"            % "1.2.12",
+      "ch.qos.logback"                 %  "logback-classic"         % "1.2.12",
+      "com.typesafe"                   %  "config"                  % "1.4.2",
+      "com.vladsch.flexmark"           %  "flexmark-all"            % "0.64.8"    % Test,
+      "org.scalatest"                  %% "scalatest"               % "3.2.13"    % Test,
+      "org.mockito"                    %% "mockito-scala-scalatest" % "1.17.14"   % Test,
+      "org.playframework"              %% "play-json"               % "3.0.2"     % Test
     )
   )
