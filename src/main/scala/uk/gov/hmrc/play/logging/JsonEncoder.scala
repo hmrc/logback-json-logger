@@ -27,7 +27,7 @@ import org.apache.commons.lang3.time.FastDateFormat
 import com.typesafe.config.ConfigFactory
 
 import scala.util.{Success, Try}
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class JsonEncoder extends EncoderBase[ILoggingEvent] {
 
