@@ -23,9 +23,10 @@ import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.spi.{ILoggingEvent, ThrowableProxy}
 import ch.qos.logback.core.ContextBase
 import org.apache.commons.lang3.time.FastDateFormat
-import org.mockito.MockitoSugar
+import org.mockito.Mockito.when
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
+import org.scalatestplus.mockito.MockitoSugar
 import play.api.libs.json.Json
 
 import scala.collection.JavaConverters._
@@ -38,7 +39,7 @@ class JsonEncoderSpec extends AnyWordSpec with Matchers with MockitoSugar {
       val jsonEncoder = new JsonEncoder()
       val event       = mock[ILoggingEvent]
 
-      when(event.getTimeStamp).thenReturn(1)
+      when(event.getTimeStamp).thenReturn(1L)
       when(event.getLevel).thenReturn(Level.INFO)
       when(event.getThreadName).thenReturn("my-thread")
       when(event.getFormattedMessage).thenReturn("my-message")

@@ -22,7 +22,7 @@ lazy val root = Project("logback-json-logger", file("."))
     majorVersion        := 5,
     isPublicArtefact    := true,
     scalaVersion        := "2.13.12",
-    crossScalaVersions  := Seq("2.12.18", "2.13.12"),
+    crossScalaVersions  := Seq("2.12.18", "2.13.12", "3.3.3"),
     libraryDependencies ++= Seq(
       "org.apache.commons"             %  "commons-lang3"           % "3.14.0",
       // jackson and logback will be evicted depending on the version of Play
@@ -33,7 +33,7 @@ lazy val root = Project("logback-json-logger", file("."))
       "com.typesafe"                   %  "config"                  % "1.4.2",
       "com.vladsch.flexmark"           %  "flexmark-all"            % "0.64.8"    % Test,
       "org.scalatest"                  %% "scalatest"               % "3.2.13"    % Test,
-      "org.mockito"                    %% "mockito-scala-scalatest" % "1.17.14"   % Test,
+      "org.scalatestplus"              %% "mockito-3-4"             % "3.2.10.0"  % Test,
       "org.playframework"              %% "play-json"               % "3.0.2"     % Test
     )
   )
