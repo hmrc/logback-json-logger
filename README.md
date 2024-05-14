@@ -7,7 +7,7 @@ This is a JSON encoder for [Logback](http://logback.qos.ch/documentation.html) a
 
 These are the properties (for your `application.conf`) that you can use to alter the log output:
 
-```
+```hocon
 appName = MyApplication
 logger.json.dateformat = "yyyy-MM-dd HH:mm:ss.SSSZZ"
 ```
@@ -48,6 +48,5 @@ Use version >= 2.0.0 for Java 8
 Use version >= 4.0.0 for Play 2.5.14 or later
 
 ## License ##
- 
-This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
 
+This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
