@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-import sbt.Keys._
-import sbt._
+//import sbt.Keys._
+//import sbt._
 
 lazy val root = Project("logback-json-logger", file("."))
   .settings(
     majorVersion        := 5,
     isPublicArtefact    := true,
-    scalaVersion        := "2.13.12",
-    crossScalaVersions  := Seq("2.13.12", "3.3.3"),
+    scalaVersion        := "2.13.16",
+    crossScalaVersions  := Seq("2.13.16", "3.3.5"),
     libraryDependencies ++= Seq(
-      "org.apache.commons"             %  "commons-lang3"           % "3.14.0",
+      "org.apache.commons"             %  "commons-lang3"           % "3.17.0",
       // jackson and logback will be evicted depending on the version of Play
-      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.11.4",
-      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.11.4",
-      "ch.qos.logback"                 %  "logback-core"            % "1.2.12",
-      "ch.qos.logback"                 %  "logback-classic"         % "1.2.12",
+      "com.fasterxml.jackson.core"     %  "jackson-core"            % "2.14.3",
+      "com.fasterxml.jackson.core"     %  "jackson-databind"        % "2.14.3",
+      "ch.qos.logback"                 %  "logback-core"            % "1.5.12",
+      "ch.qos.logback"                 %  "logback-classic"         % "1.5.12",
       "com.typesafe"                   %  "config"                  % "1.4.3",
       "com.vladsch.flexmark"           %  "flexmark-all"            % "0.64.8"    % Test,
-      "org.scalatest"                  %% "scalatest"               % "3.2.13"    % Test,
-      "org.scalatestplus"              %% "mockito-3-4"             % "3.2.10.0"  % Test,
-      "org.playframework"              %% "play-json"               % "3.0.3"     % Test
+      "org.scalatest"                  %% "scalatest"               % "3.2.17"    % Test,
+      "org.scalatestplus"              %% "mockito-4-11"            % "3.2.17.0"  % Test,
+      "org.playframework"              %% "play-json"               % "3.0.4"     % Test
     )
   )
