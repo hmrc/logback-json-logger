@@ -52,6 +52,12 @@ class JsonEncoder extends EncoderBase[ILoggingEvent] {
   override def encode(event: ILoggingEvent): Array[Byte] = {
     val eventNode = mapper.createObjectNode
 
+    Option(event.getKeyValuePairs).foreach(c =>
+      c.forEach { kvp =>
+        eventNode.put(kvp.key.toLowerCase, kvp.value.toString)
+      }
+    )
+
     eventNode.put("app", appName)
     eventNode.put("hostname", InetAddress.getLocalHost.getHostName)
     eventNode.put("timestamp", dateFormat.format(event.getTimeStamp))

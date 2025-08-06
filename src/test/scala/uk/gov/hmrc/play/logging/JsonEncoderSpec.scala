@@ -27,6 +27,7 @@ import org.mockito.Mockito.when
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
+import org.slf4j.event.KeyValuePair
 import play.api.libs.json.Json
 
 import scala.jdk.CollectionConverters._
@@ -45,6 +46,12 @@ class JsonEncoderSpec extends AnyWordSpec with Matchers with MockitoSugar {
       when(event.getFormattedMessage).thenReturn("my-message")
       when(event.getLoggerName).thenReturn("logger-name")
       when(event.getMDCPropertyMap).thenReturn(Map("myMdcProperty" -> "myMdcValue").asJava)
+      when(event.getKeyValuePairs).thenReturn(
+        List(
+          new KeyValuePair("method", "my-method"),
+          new KeyValuePair("thread", "never-used")
+        ).asJava
+      )
 
       val testException = new Exception("test-exception")
       val stringWriter  = new StringWriter()
@@ -72,6 +79,7 @@ class JsonEncoderSpec extends AnyWordSpec with Matchers with MockitoSugar {
       (resultAsJson \ "level"        ).as[String] shouldBe "INFO"
       (resultAsJson \ "mykey"        ).as[String] shouldBe "myValue"
       (resultAsJson \ "mymdcproperty").as[String] shouldBe "myMdcValue"
+      (resultAsJson \ "method"       ).as[String] shouldBe "my-method"
     }
   }
 }
